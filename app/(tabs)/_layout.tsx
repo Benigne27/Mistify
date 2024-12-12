@@ -47,6 +47,20 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="cloud.fill" color={color} />,
         }}
       />
+      <Tabs.Screen
+        name="Send"
+        options={{
+          title: 'Send',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="cloud.fill" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="AddNote"
+        options={{
+          title: 'AddNote',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="cloud.fill" color={color} />,
+        }}
+      />
     </Tabs>
   );
 }
