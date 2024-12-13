@@ -8,7 +8,7 @@ import React, {
 } from "react";
 import { ActivityIndicator } from "react-native";
 
-// Define types for the weather data structure
+// Types for the weather data structure
 type HourlyData = {
   temperature_2m: number[];
   relative_humidity_2m: number[];
@@ -20,7 +20,7 @@ type WeatherApiResponse = {
   hourly: HourlyData;
 };
 
-// Define type for humidity data used in the context
+// Type for humidity data used in the context
 type HumidityData = {
   date: string;
   time: string;
@@ -29,13 +29,13 @@ type HumidityData = {
   rain: number;
 }[];
 
-// Define type for context value
+// Type for context value
 type AppContextType = {
   humidityData: HumidityData;
   apiResponses: WeatherApiResponse | null;
 };
 
-// Create context with the defined type
+// Context with the defined type
 export const AppContext = createContext<AppContextType | undefined>(undefined);
 
 // Custom hook to use the context

@@ -1,74 +1,77 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import {
+  Dimensions,
+  ImageBackground,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import React from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { useAppContext } from "../Context/ContextProv";
+const width = Dimensions.get("screen").width;
+const height = Dimensions.get("screen").height;
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
-export default function HomeScreen() {
-  return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+const index = () => {
+  const { humidityData } = useAppContext();
+  console.log(humidityData);
+  const todayDate = new Date().toISOString().split("T")[1].split(":")[0];
+  const todayTime = new Date().toLocaleTimeString().split(":")[0];
+  const todayDateTime = todayDate.split(":")[0];
+  console.log(todayTime);
+  const todayHumData = humidityData.filter((data) => data.date === todayDate);
+  const currentHumData = humidityData.filter(
+    (data) => data.time.split(":")[0] === todayTime
   );
-}
+  // console.log(todayHumData)
+  console.log(currentHumData);
+  return (
+    <ImageBackground
+      style={styles.indexTab}
+      source={require("@/assets/images/sky2.jpg")}
+    >
+      <StatusBar barStyle={"light-content"} />
+      <ScrollView style={{width:width}}>
+        <View style={{display:'flex', alignItems:'center', height:height}}>
+      <SafeAreaView></SafeAreaView>
+      <Text style={{ fontSize: 120 }}>🌦️</Text>
+      <View style={{height:15}}></View>
+      {currentHumData ? (
+        <View style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <Text style={{ color: "white", fontSize: 20, fontWeight: "bold" }}>
+            Current Humidity
+          </Text>
+          <Text style={{ color: "white", fontSize: 30, fontWeight: "bold" }}>
+            {currentHumData[0].humidity}%
+          </Text>
+          <Text style={{ color: "white", fontSize: 17, fontWeight: "500" }}>
+            T: {currentHumData[0].temperature}°C | {currentHumData[0].time}
+          </Text>
+        </View>
+      ) : null}
+      <View style={{height:80}}></View>
+      
+
+      <View style={{height:150, width:width-40, backgroundColor:'white', opacity:0.9, borderRadius:20}}></View>
+      <View style={{height:50}}></View>
+      <View style={{display:'flex', flexDirection:'row', gap:30}}>
+        <View style={{height:130, width:100, backgroundColor:'white', opacity:0.9, borderRadius:20}}></View>
+        <View style={{height:130, width:100, backgroundColor:'white', opacity:0.9, borderRadius:20}}></View>
+        <View style={{height:130, width:100, backgroundColor:'white', opacity:0.9, borderRadius:20}}></View>
+      </View>
+      </View>
+      </ScrollView>
+    </ImageBackground>
+  );
+};
+
+export default index;
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  indexTab: {
+    height: height,
+    display: "flex",
+    alignItems: "center",
   },
 });

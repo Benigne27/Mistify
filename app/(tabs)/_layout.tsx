@@ -14,53 +14,52 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: '#5D3FD3',
         headerShown: false,
         tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
+        // tabBarBackground: TabBarBackground,
+        // tabBarStyle: Platform.select({
+        //   ios: {
+        //     position: 'absolute',
+        //   },
+        //   default: {},
+        // }),
+
+        tabBarStyle:{
+          backgroundColor:'#fafafa'
+        }
       }}>
       <Tabs.Screen
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Notifications',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="humidity"
-        options={{
-          title: 'Humidity',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="cloud.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="Send"
-        options={{
-          title: 'Send',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="cloud.fill" color={color} />,
+          tabBarIcon: ({ color, focused }) => <IconSymbol size={28} name="house.fill" color={focused? '#5D3FD3': color} />,
         }}
       />
       <Tabs.Screen
         name="AddNote"
         options={{
           title: 'AddNote',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="cloud.fill" color={color} />,
+        
+          tabBarIcon: ({ color, focused }) => <IconSymbol size={28} name="cross.fill" color={focused? '#5D3FD3': color} />,
         }}
       />
+       <Tabs.Screen
+        name="Send"
+        options={{
+          title: 'Notifications',
+          tabBarIcon: ({ color, focused }) => <IconSymbol size={28} name="bell.fill" color={focused? '#5D3FD3': color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="humidity"
+        options={{
+          title: 'Humidity',
+          tabBarIcon: ({ color, focused }) => <IconSymbol size={28} name="cloud.fill" color={focused? '#5D3FD3': color} />,
+        }}
+      />
+     
+      
     </Tabs>
   );
 }

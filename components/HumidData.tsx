@@ -15,7 +15,6 @@ export default function HumidData({
   const { humidityData } = useAppContext();
   const todayTime = new Date().toLocaleString();
   const todayDate = new Date().toISOString().split("T")[0];
-  console.log(todayDate);
   const todayHumData = humidityData.filter((data) => data.date === todayDate);
 
   return (
@@ -66,7 +65,8 @@ const styles = StyleSheet.create({
   HumidDataTab: {
     width: width - 40,
     // height: 200,
-    backgroundColor: "#048c",
+    backgroundColor: "#5D3FD3",
+    // backgroundColor: "#048c",
     borderRadius: 20,
     padding: 17,
     display: "flex",
