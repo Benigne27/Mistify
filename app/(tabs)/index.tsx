@@ -26,10 +26,15 @@ const index = () => {
   );
   // console.log(todayHumData)
   console.log(currentHumData);
+
+  const currentIndex = humidityData.findIndex(
+    (data) => data.time.split(":")[0] === todayTime
+  );
+  const nextHumData = humidityData.slice(currentIndex + 1, currentIndex + 4);
   return (
     <ImageBackground
       style={styles.indexTab}
-      source={require("@/assets/images/sky2.jpg")}
+      source={require("@/assets/images/sky3.jpg")}
     >
       <StatusBar barStyle={"light-content"} />
       <ScrollView style={{width:width}}>
@@ -55,11 +60,31 @@ const index = () => {
 
       <View style={{height:150, width:width-40, backgroundColor:'white', opacity:0.9, borderRadius:20}}></View>
       <View style={{height:50}}></View>
-      <View style={{display:'flex', flexDirection:'row', gap:30}}>
+      {/* <View style={{display:'flex', flexDirection:'row', gap:30}}>
         <View style={{height:130, width:100, backgroundColor:'white', opacity:0.9, borderRadius:20}}></View>
         <View style={{height:130, width:100, backgroundColor:'white', opacity:0.9, borderRadius:20}}></View>
         <View style={{height:130, width:100, backgroundColor:'white', opacity:0.9, borderRadius:20}}></View>
-      </View>
+      </View> */}
+       <View style={{ display: "flex", flexDirection: "row", gap: 30 }}>
+            {nextHumData.slice(1).map((data, index) => (
+              <View
+                key={index}
+                style={{
+                  height: 130,
+                  width: 100,
+                  backgroundColor: "white",
+                  opacity: 0.9,
+                  borderRadius: 20,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Text style={{ fontWeight: "bold" }}>{data.time}</Text>
+                <Text>{data.humidity}%</Text>
+                <Text>{data.temperature}°C</Text>
+              </View>
+            ))}
+          </View>
       </View>
       </ScrollView>
     </ImageBackground>

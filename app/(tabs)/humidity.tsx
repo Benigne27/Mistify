@@ -60,7 +60,7 @@ import {
                   humidity={entry.humidity}
                   temperature={entry.temperature}
                   time={entry.time}
-                  rain={entry.rain}
+                  dew_point_2m={entry.dew_point_2m}
                 />
               </View>
             ))
