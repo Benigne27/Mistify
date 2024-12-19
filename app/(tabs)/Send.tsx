@@ -155,7 +155,7 @@
 
 
 import React, { useEffect, useState, useRef } from "react";
-import { View, Text, StatusBar, Dimensions, Image } from "react-native";
+import { View, Text, StatusBar, Dimensions, Image, ScrollView } from "react-native";
 import * as Notifications from "expo-notifications";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -203,6 +203,7 @@ export default function App() {
   }, []);
 
   return (
+  <ScrollView>
     <View style={{ flex: 1, alignItems: "center" }}>
            <SafeAreaView></SafeAreaView>
        <StatusBar barStyle={"dark-content"} />
@@ -271,6 +272,14 @@ export default function App() {
               >
                 {notification && notification.request.content.data.time}
               </Text>
+              <Text
+                style={{
+                  fontSize: 10,
+                  color: "gray",
+                }}
+              >
+                {notification && notification.request.content.data.entries}
+              </Text>
             </View>
           </View>
       ) : (
@@ -294,5 +303,6 @@ export default function App() {
       )}
       </View>
     </View>
+    </ScrollView>
   );
 }

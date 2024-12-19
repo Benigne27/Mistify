@@ -217,6 +217,9 @@ export default function ContextProv({ children }: ContextProvProps) {
     dew_point_2m: [],
     time: [],
   };
+  
+    const todayTime = new Date().toLocaleTimeString().split(":")[0];
+    const todayDate = new Date().toISOString().split("T")[0];
 
   const humidityData: HumidityData = hourly.relative_humidity_2m.map(
     (humidity, index) => ({
@@ -226,17 +229,25 @@ export default function ContextProv({ children }: ContextProvProps) {
       temperature: hourly.temperature_2m[index] || 0,
       dew_point_2m: hourly.dew_point_2m[index] || 0,
     })
+  )
+  const highHumidity=humidityData.filter((data)=>data.humidity>=70);
+  const todayHumData = highHumidity.filter(
+    (data) => data.date === todayDate
   );
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const highHumidity = humidityData.find((data) => data.humidity >= 50);
-      if (highHumidity && expoPushToken) {
+      
+      if (todayHumData.length>0 && expoPushToken) {
+        const notificationBody=String(
+          todayHumData.map((entry)=>
+            `Expected Humidity rise to ${entry.humidity} at ${entry.time}`))
+        
         const message = {
           to: expoPushToken,
           sound: "default",
           title: "🌧️ High Humidity Alert!",
-          body: `Humidity is ${highHumidity.humidity}% at ${highHumidity.time}.`,
+          body: notificationBody,
           data: {
             date: new Date().toLocaleDateString(),
             time: new Date().toLocaleTimeString(),

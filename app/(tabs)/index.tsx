@@ -60,13 +60,8 @@ const index = () => {
 
       <View style={{height:150, width:width-40, backgroundColor:'white', opacity:0.9, borderRadius:20}}></View>
       <View style={{height:50}}></View>
-      {/* <View style={{display:'flex', flexDirection:'row', gap:30}}>
-        <View style={{height:130, width:100, backgroundColor:'white', opacity:0.9, borderRadius:20}}></View>
-        <View style={{height:130, width:100, backgroundColor:'white', opacity:0.9, borderRadius:20}}></View>
-        <View style={{height:130, width:100, backgroundColor:'white', opacity:0.9, borderRadius:20}}></View>
-      </View> */}
        <View style={{ display: "flex", flexDirection: "row", gap: 30 }}>
-            {nextHumData.slice(1).map((data, index) => (
+            {nextHumData.slice(0).map((data, index) => (
               <View
                 key={index}
                 style={{
