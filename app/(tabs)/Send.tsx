@@ -254,6 +254,7 @@ export default function App() {
             <View
               style={{
                 alignSelf: "flex-end",
+                paddingTop:20
               }}
             >
               <Text

@@ -37,30 +37,63 @@ const index = () => {
       source={require("@/assets/images/sky3.jpg")}
     >
       <StatusBar barStyle={"light-content"} />
-      <ScrollView style={{width:width}}>
-        <View style={{display:'flex', alignItems:'center', height:height}}>
-      <SafeAreaView></SafeAreaView>
-      <Text style={{ fontSize: 120 }}>🌦️</Text>
-      <View style={{height:15}}></View>
-      {currentHumData ? (
-        <View style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <Text style={{ color: "white", fontSize: 20, fontWeight: "bold" }}>
-            Current Humidity
-          </Text>
-          <Text style={{ color: "white", fontSize: 30, fontWeight: "bold" }}>
-            {currentHumData[0].humidity}%
-          </Text>
-          <Text style={{ color: "white", fontSize: 17, fontWeight: "500" }}>
-            T: {currentHumData[0].temperature}°C | {currentHumData[0].time}
-          </Text>
-        </View>
-      ) : null}
-      <View style={{height:80}}></View>
-      
+      <ScrollView style={{ width: width }}>
+        <View style={{ display: "flex", alignItems: "center", height: height }}>
+          <SafeAreaView></SafeAreaView>
+          <Text style={{ fontSize: 120 }}>🌦️</Text>
+          <View style={{ height: 15 }}></View>
+          {currentHumData ? (
+            <View style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <Text
+                style={{ color: "white", fontSize: 20, fontWeight: "bold" }}
+              >
+                Current Humidity
+              </Text>
+              <Text
+                style={{ color: "white", fontSize: 30, fontWeight: "bold" }}
+              >
+                {currentHumData[0].humidity}%
+              </Text>
+              <Text style={{ color: "white", fontSize: 17, fontWeight: "500" }}>
+                T: {currentHumData[0].temperature}°C | {currentHumData[0].time}
+              </Text>
+            </View>
+          ) : null}
+          <View style={{ height: 80 }}></View>
 
-      <View style={{height:150, width:width-40, backgroundColor:'white', opacity:0.9, borderRadius:20}}></View>
-      <View style={{height:50}}></View>
-       <View style={{ display: "flex", flexDirection: "row", gap: 30 }}>
+          <View
+            style={{
+              // height: 150,
+              width: width - 40,
+              backgroundColor: "white",
+              opacity: 0.9,
+              borderRadius: 20,
+            }}
+          >
+            {
+              nextHumData[0].humidity>80 ? (
+                <View style={{display:'flex',justifyContent:'center', padding:20,}}>
+                  <Text style={{fontSize:15}}>
+                    The upcoming humidity is expected to be {nextHumData[0].humidity}%.{"\n"}
+                    It is advisable to turn off fans to avoid hygroscopic materials like milk
+                    to absorb moisture and lead to clogging!
+                  </Text>
+                  <View style={{height:15}}></View>
+                  <Text style={{fontSize:15}}><Text style={{fontWeight:'bold', color:'#5D3FD3', fontSize:17}}>Tip: </Text>Watch out for pests too, they love humid conditions!</Text>
+                </View>
+              ):(
+                <View style={{display:'flex',justifyContent:'center', padding:20,}}>
+                    <Text style={{fontSize:15}}>
+                    No humidity rise is expected in the next hour,{"\n"}
+                    All is clear. 😊{"\n\n"}
+                    Have a Great Job! 😃
+                    </Text>
+                </View>
+              )
+            }
+          </View>
+          <View style={{ height: 50 }}></View>
+          <View style={{ display: "flex", flexDirection: "row", gap: 30 }}>
             {nextHumData.slice(0).map((data, index) => (
               <View
                 key={index}
@@ -74,13 +107,13 @@ const index = () => {
                   alignItems: "center",
                 }}
               >
-                <Text style={{ fontWeight: "bold" }}>{data.time}</Text>
+                <Text style={{ fontWeight: "bold", color:"#5D3FD3" }}>{data.time}</Text>
                 <Text>{data.humidity}%</Text>
                 <Text>{data.temperature}°C</Text>
               </View>
             ))}
           </View>
-      </View>
+        </View>
       </ScrollView>
     </ImageBackground>
   );
