@@ -29,7 +29,6 @@ export default function HumidData({
           <Text style={styles.Emoji2}>🌦️</Text>
             <Text style={styles.DateTime}>{humidity}%</Text>
             <Text style={styles.DateTime}>{temperature}°C</Text>
-            {/* <Text style={styles.DateTime}>{dew_point_2m>0?(<Text>Possible dew_point_2m</Text>):null}</Text> */}
             
           </View>
         </View>
@@ -47,7 +46,6 @@ export default function HumidData({
                     <Text style={styles.Emoji}>🌦️</Text>
                     <Text style={styles.CondData}>{data.humidity}%</Text>
                     <Text style={styles.CondData}>{data.temperature}°C</Text>
-                    {/* <Text style={styles.CondData}>{data.dew_point_2m>0?(<Text>Possible dew_point_2m</Text>):null}</Text> */}
            
                   </View>
                   <View style={{ width: 30 }}></View>
@@ -64,13 +62,10 @@ export default function HumidData({
 const styles = StyleSheet.create({
   HumidDataTab: {
     width: width - 40,
-    // height: 200,
     backgroundColor: "#5D3FD3",
-    // backgroundColor: "#048c",
     borderRadius: 20,
     padding: 17,
     display: "flex",
-    // flexDirection:'row',
     justifyContent: "space-between",
   },
   DateTime: {

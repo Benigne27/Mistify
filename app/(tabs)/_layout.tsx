@@ -17,14 +17,6 @@ export default function TabLayout() {
         tabBarActiveTintColor: '#5D3FD3',
         headerShown: false,
         tabBarButton: HapticTab,
-        // tabBarBackground: TabBarBackground,
-        // tabBarStyle: Platform.select({
-        //   ios: {
-        //     position: 'absolute',
-        //   },
-        //   default: {},
-        // }),
-
         tabBarStyle:{
           backgroundColor:'#fafafa'
         }
@@ -34,14 +26,6 @@ export default function TabLayout() {
         options={{
           title: 'Home',
           tabBarIcon: ({ color, focused }) => <IconSymbol size={28} name="house.fill" color={focused? '#5D3FD3': color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="AddNote"
-        options={{
-          title: 'AddNote',
-        
-          tabBarIcon: ({ color, focused }) => <IconSymbol size={28} name="cross.fill" color={focused? '#5D3FD3': color} />,
         }}
       />
        <Tabs.Screen

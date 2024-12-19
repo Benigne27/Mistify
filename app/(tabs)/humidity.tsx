@@ -20,14 +20,6 @@ import {
   
   const hourly = () => {
     const { humidityData } = useAppContext();
-
-    // useEffect(() => {
-    //   const interval = setInterval(() => {
-    //     // checkHumidityAndNotify();
-    //   }, 60 * 60 * 1000); // Check every 1hr
-  
-    //   return () => clearInterval(interval); // Cleanup on unmount
-    // }, [humidityData]);
     const todayTime = new Date().toLocaleTimeString().split(":")[0];
     const todayDate = new Date().toISOString().split("T")[0];
     console.log(todayDate);

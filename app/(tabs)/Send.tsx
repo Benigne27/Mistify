@@ -219,7 +219,7 @@ export default function App() {
       {notification ? (
         <View
             style={{
-              width: 350,
+              width: 370,
               display: "flex",
               backgroundColor: "white",
               shadowOpacity: 0.5,

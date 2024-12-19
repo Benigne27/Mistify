@@ -230,7 +230,7 @@ export default function ContextProv({ children }: ContextProvProps) {
       dew_point_2m: hourly.dew_point_2m[index] || 0,
     })
   )
-  const highHumidity=humidityData.filter((data)=>data.humidity>=70);
+  const highHumidity=humidityData.filter((data)=>data.humidity>=80);
   const todayHumData = highHumidity.filter(
     (data) => data.date === todayDate
   );
