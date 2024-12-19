@@ -241,7 +241,7 @@ export default function ContextProv({ children }: ContextProvProps) {
       if (todayHumData.length>0 && expoPushToken) {
         const notificationBody=String(
           todayHumData.map((entry)=>
-            `Expected Humidity rise to ${entry.humidity} at ${entry.time}`))
+            `Expected Humidity rise to ${entry.humidity}% at ${entry.time}`))
         
         const message = {
           to: expoPushToken,
