@@ -26,7 +26,7 @@ export default function HumidData({
             <Text style={styles.DateTime}>{time}</Text>
           </View>
           <View style={{display:'flex', gap:3}}>
-          <Text style={styles.Emoji2}>{dew_point_2m>0?(<Text>🌧️</Text>):(<Text>⛅</Text>)}</Text>
+          <Text style={styles.Emoji2}>🌦️</Text>
             <Text style={styles.DateTime}>{humidity}%</Text>
             <Text style={styles.DateTime}>{temperature}°C</Text>
             {/* <Text style={styles.DateTime}>{dew_point_2m>0?(<Text>Possible dew_point_2m</Text>):null}</Text> */}
@@ -44,7 +44,7 @@ export default function HumidData({
                     style={{ display: "flex", flexDirection: "column", gap: 5 }}
                   >
                     <Text style={styles.CondData}>{data.time}</Text>
-                    {/* <Text style={styles.Emoji}>{data.dew_point_2m>0?(<Text>🌧️</Text>):(<Text>⛅</Text>)}</Text> */}
+                    <Text style={styles.Emoji}>🌦️</Text>
                     <Text style={styles.CondData}>{data.humidity}%</Text>
                     <Text style={styles.CondData}>{data.temperature}°C</Text>
                     {/* <Text style={styles.CondData}>{data.dew_point_2m>0?(<Text>Possible dew_point_2m</Text>):null}</Text> */}

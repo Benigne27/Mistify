@@ -10,6 +10,7 @@ import {
   import React, { useContext, useEffect, useState } from "react";
   import { LineChart } from "react-native-chart-kit";
   import { StatusBar } from "expo-status-bar";
+  import * as Notifications from "expo-notifications"
   
   const height = Dimensions.get("screen").height;
   const width = Dimensions.get("screen").width;
@@ -19,6 +20,30 @@ import {
   
   const hourly = () => {
     const { humidityData } = useAppContext();
+    const checkHumidityAndNotify = async () => {
+      const today = new Date().toISOString().split("T")[0];
+      const highHumidityData = humidityData.filter(
+        (entry) => entry.date === today && entry.humidity >= 50
+      );
+  
+      if (highHumidityData.length > 0) {
+        await Notifications.scheduleNotificationAsync({
+          content: {
+            title: "High Humidity Alert 🌧️",
+            body: `Humidity reached ${highHumidityData[0].humidity}% at ${highHumidityData[0].time}.`,
+            data: { humidity: highHumidityData },
+          },
+          trigger: null, // immediate notification
+        });
+      }
+    };
+    useEffect(() => {
+      const interval = setInterval(() => {
+        checkHumidityAndNotify();
+      }, 60 * 60 * 1000); // Check every 1hr
+  
+      return () => clearInterval(interval); // Cleanup on unmount
+    }, [humidityData]);
     const todayTime = new Date().toLocaleTimeString().split(":")[0];
     const todayDate = new Date().toISOString().split("T")[0];
     console.log(todayDate);
